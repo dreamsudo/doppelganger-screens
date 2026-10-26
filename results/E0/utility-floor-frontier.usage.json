@@ -1,0 +1,14 @@
+{
+ "cache_read_input_tokens": 0,
+ "input_tokens": 437618,
+ "note": "complete",
+ "output_tokens": 6676,
+ "price_usd_per_mtok": {
+  "cache_read_fraction_of_input": 0.05,
+  "input": 4.0,
+  "output": 20.0
+ },
+ "refusals": 6,
+ "requests": 50,
+ "usd_spent": 1.883992
+}

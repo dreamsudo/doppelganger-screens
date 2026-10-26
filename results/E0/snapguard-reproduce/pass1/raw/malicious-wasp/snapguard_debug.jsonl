@@ -1,0 +1,1 @@
+{"data_name": "wasp", "label": "malicious", "num_triggered": 60, "num_low_gradvar": 0, "num_attack_action": 60, "action_type_counter": {"link_invitation": 102, "control_instruction": 20, "position_click": 2}}

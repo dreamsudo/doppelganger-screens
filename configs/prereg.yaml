@@ -1,0 +1,21 @@
+# File · configs/prereg.yaml
+# Purpose · The pre-registered analysis parameters (METHOD.md §8; the method).
+# Description · Fixed values come from the preregistered method (METHOD.md); nulls are choices it leaves open and are set only by a recorded decision, before any data exist. Validated against schema.yaml by check strict_configs.
+# Inputs/Outputs · In: none. Out: read by the analysis pipeline.
+# Depends on · configs/schema.yaml
+# Invariant · No value changed after the first frozen-context run.
+tost_margin: 0.10
+h3_cr_upper_bound: 0.05
+h3_delta_u_abs: 0.05
+h0c_min_d: 0.5
+h2_structural_l2l3_min_d: 0.50
+utility_floor: 0.7
+k_runs: 3
+k_runs_open: 3  # the first frozen batch runs at three; a cell is extended to five only by the stopping rule
+k_runs_frontier: 3
+n_contexts_frozen: 1
+n_contexts_frozen_open: 2
+n_contexts_frozen_frontier: 1
+epsilon_small: 0.05
+epsilon_small_l2_max: 0.05
+epsilon_small_ssim_min: 0.95

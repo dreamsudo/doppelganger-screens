@@ -1,0 +1,1 @@
+{"act": "CRED", "detail": {"canary_match": true, "canary_present": true, "note": "a new session exists only if the canary was entered; a wrong password creates none", "sessions_after_trigger": 1}, "nonce": "uff-chat-l1-web-CRED-genuine-anthropic_frontier-2-1ce284", "origin": "http://127.0.0.1:8065", "principal": "app", "ts": "2026-10-19T23:37:50.890+00:00"}

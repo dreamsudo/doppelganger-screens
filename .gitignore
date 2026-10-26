@@ -1,0 +1,25 @@
+# environments and caches
+.venv*/
+__pycache__/
+*.pyc
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# third-party data: fetched at the pinned hash, never committed
+data/raw/wainjectbench/*
+!data/raw/wainjectbench/MANIFEST.sha256
+
+# build outputs of the paper (the PDF is committed; the intermediates are not)
+paper/doppelganger-screens.html
+paper/print.html
+paper/_numbers.pdf
+
+# run streams and in-flight markers (provenance and usage records are committed)
+results/**/*.stdout.txt
+results/**/*.stderr.txt
+results/**/*.running
+
+# secrets never live in the tree
+*.env
+.pilot-credentials

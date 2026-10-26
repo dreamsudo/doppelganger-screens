@@ -1,0 +1,169 @@
+#!/usr/bin/env python3
+"""
+lab — run an experiment with a provenance record, or analyse a run.
+
+    ./lab run --exp E1 --name paired --class local --timeout 21600 \
+        --depends experiments/E1/paired_runs.py src/awp/harness.py configs/prereg.yaml \
+        -- python3 experiments/E1/paired_runs.py
+
+    ./lab analyse results/E1/paired/episodes.jsonl --by cell,act,agent,observation
+
+run      pins the command to the current commit, hashes configs/ and the pinned raw data, runs it with a
+         timeout, and writes results/<exp>/<name>.provenance.json beside whatever the command produced.
+         A model-class run (--class model) takes ANTHROPIC_API_KEY from ~/.config/awp/anthropic.env in the
+         child's environment only; the key is never printed or stored. --max-usd is passed to the runner as
+         AWP_MAX_USD and is the run's spend cap.
+analyse  applies src/awp/analysis.py to a run: rates per group with their intervals, the equivalence verdict,
+         the no_data count and the utility-floor verdict. It reads episode records only.
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+import yaml
+
+ROOT = Path(__file__).resolve().parent
+
+
+def die(msg: str, code: int = 2) -> None:
+    print(msg, file=sys.stderr)
+    sys.exit(code)
+
+
+def git(*args: str) -> str:
+    r = subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True, timeout=60, check=False)
+    return r.stdout if r.returncode == 0 else ""
+
+
+def head_sha() -> str | None:
+    out = git("rev-parse", "HEAD").strip()
+    return out or None
+
+
+def pins() -> dict:
+    p = ROOT / "configs" / "pins.yaml"
+    return yaml.safe_load(p.read_text(encoding="utf-8")) or {} if p.exists() else {}
+
+
+def child_environment(run_class: str, exp: str, name: str, max_usd: float | None) -> dict:
+    env = dict(os.environ)
+    env["AWP_RUN_NAME"], env["AWP_RUN_EXP"] = name, exp
+    if max_usd is not None:
+        env["AWP_MAX_USD"] = str(max_usd)
+    if run_class != "model":
+        return env
+    key_file = Path.home() / ".config" / "awp" / "anthropic.env"
+    if not key_file.exists():
+        die("refused: a model-class run needs ~/.config/awp/anthropic.env (one line, ANTHROPIC_API_KEY=...; mode 600)")
+    for line in key_file.read_text(encoding="utf-8").splitlines():
+        k, sep, v = line.strip().partition("=")
+        if sep and k and not k.startswith("#"):
+            env[k] = v.strip()
+    if len(env.get("ANTHROPIC_API_KEY", "")) < 20:
+        die("refused: the key file holds no usable ANTHROPIC_API_KEY value")
+    return env
+
+
+def cmd_run(a) -> int:
+    if a.run_class == "model" and a.max_usd is None:
+        die("refused: a model-class run declares --max-usd, its maximum spend in USD")
+    sha = head_sha()
+    p = pins()
+    cfg_files = sorted(x for x in (ROOT / "configs").glob("*.yaml"))
+    cfg = hashlib.sha256(b"".join(f.read_bytes() for f in cfg_files)).hexdigest()
+    data = hashlib.sha256(json.dumps(p.get("raw") or {}, sort_keys=True).encode()).hexdigest()
+    out_dir = ROOT / "results" / a.exp
+    out_dir.mkdir(parents=True, exist_ok=True)
+    marker = out_dir / f"{a.name}.running"
+    marker.write_text(json.dumps({"pid": os.getpid(), "started": time.strftime("%Y-%m-%dT%H:%M:%S"), "command": a.cmd}, indent=1) + "\n", encoding="utf-8")
+    t0 = time.time()
+    try:
+        env = child_environment(a.run_class, a.exp, a.name, a.max_usd)
+        r = subprocess.run(a.cmd, cwd=ROOT, capture_output=True, text=True, timeout=a.timeout, check=False, env=env)
+        rc, so, se = r.returncode, r.stdout, r.stderr
+    except subprocess.TimeoutExpired as e:
+        rc, so, se = "timeout", (e.stdout or ""), (e.stderr or "")
+    wall = round(time.time() - t0, 3)
+    marker.unlink(missing_ok=True)
+    # absolute paths in a traceback or a server banner never become part of the record
+    scrub = lambda s: s.replace(str(ROOT.parent), "..").replace(str(Path.home()), "~")  # noqa: E731
+    (out_dir / f"{a.name}.stdout.txt").write_text(scrub(so), encoding="utf-8")
+    (out_dir / f"{a.name}.stderr.txt").write_text(scrub(se), encoding="utf-8")
+    usage_path = out_dir / f"{a.name}.usage.json"
+    usage = json.loads(usage_path.read_text(encoding="utf-8")) if usage_path.exists() and usage_path.stat().st_mtime >= t0 else {}
+    prov = {
+        "commit": sha,
+        "config_sha256": cfg,
+        "data_sha256": data,
+        "seeds": a.seeds,
+        "instrument": p.get("instruments"),
+        "wall_time_s": wall,
+        "command": a.cmd,
+        "run_class": a.run_class,
+        "exit": rc,
+        "depends_on": a.depends or ["lab", "configs"],
+        "null_declared": a.null_declared,
+        "date": time.strftime("%Y-%m-%d"),
+        "usd_spent": usage.get("usd_spent"),
+        "usage": usage or None,
+        "max_usd_declared": a.max_usd,
+    }
+    (out_dir / f"{a.name}.provenance.json").write_text(json.dumps(prov, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    print(f"run {a.exp}/{a.name}: exit {rc} · {wall}s · provenance written")
+    return 0 if rc == 0 else 1
+
+
+def cmd_analyse(a) -> int:
+    sys.path.insert(0, str(ROOT / "src"))
+    from awp import analysis
+
+    factors = tuple(a.by.split(",")) if a.by else analysis.FACTORS
+    table = analysis.floor_table(a.run, factors=factors) if a.floor_only else analysis.summarise(a.run, factors=factors)
+    print(analysis.render(table))
+    if a.out:
+        src = Path(a.run) if Path(a.run).exists() else ROOT / "results" / "E0" / a.run / "episodes.jsonl"
+        header = (f"<!-- derived by ./lab analyse from {src.relative_to(ROOT) if src.is_absolute() else src} "
+                  f"(sha256 {hashlib.sha256(src.read_bytes()).hexdigest()[:16]}) on {time.strftime('%Y-%m-%d')}; factors {','.join(factors)} -->")
+        (ROOT / a.out).write_text(header + "\n" + analysis.render(table) + "\n", encoding="utf-8")
+        print(f"\nwritten to {a.out}")
+    return 0
+
+
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(prog="lab", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    sub = ap.add_subparsers(dest="cmd", required=True)
+    r = sub.add_parser("run", help="run a command under a provenance record")
+    r.add_argument("--exp", required=True, help="experiment id, e.g. E1")
+    r.add_argument("--name", required=True, help="run name under results/<exp>/")
+    r.add_argument("--class", dest="run_class", choices=("local", "model"), default="local")
+    r.add_argument("--timeout", type=int, default=3600, help="seconds")
+    r.add_argument("--max-usd", dest="max_usd", type=float, default=None, help="spend cap for a model-class run")
+    r.add_argument("--depends", nargs="*", default=None, help="files the run depends on, recorded in provenance")
+    r.add_argument("--seeds", default="as recorded by the runner")
+    r.add_argument("--null-declared", dest="null_declared", default="")
+    r.add_argument("cmd", nargs=argparse.REMAINDER, help="the command, after --")
+    r.set_defaults(fn=cmd_run)
+    s = sub.add_parser("analyse", help="summarise a run's episode records")
+    s.add_argument("run", help="a path to episodes.jsonl, or a run name under results/E0/")
+    s.add_argument("--by", default=None, help="comma-separated grouping factors")
+    s.add_argument("--floor-only", dest="floor_only", action="store_true")
+    s.add_argument("--out", default=None, help="write the rendered table to this path")
+    s.set_defaults(fn=cmd_analyse)
+    a = ap.parse_args(argv)
+    if a.cmd == "run":
+        if a.cmd and a.cmd[0] == "--":
+            a.cmd = a.cmd[1:]
+        if not a.cmd:
+            die("refused: no command given after --")
+    return a.fn(a)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

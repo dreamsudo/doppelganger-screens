@@ -1,0 +1,56 @@
+{
+ "cells": {
+  "browser-l1": {
+   "defence_advantage": -0.0,
+   "defence_advantage_ci95": [
+    -0.0734,
+    0.0734
+   ],
+   "flag_rate_genuine": 0.1379,
+   "flag_rate_replica": 0.1379,
+   "n_pairs": 174,
+   "note": "the advantage is the flag rate on replicas minus the flag rate on genuine prompts; where the twins are bit-identical it is zero by construction"
+  },
+  "browser-l2": {
+   "defence_advantage": -0.0,
+   "defence_advantage_ci95": [
+    -0.081,
+    0.081
+   ],
+   "flag_rate_genuine": 0.2255,
+   "flag_rate_replica": 0.2255,
+   "n_pairs": 204,
+   "note": "the advantage is the flag rate on replicas minus the flag rate on genuine prompts; where the twins are bit-identical it is zero by construction"
+  },
+  "chat-l1-web": {
+   "defence_advantage": -0.0,
+   "defence_advantage_ci95": [
+    -0.1759,
+    0.1759
+   ],
+   "flag_rate_genuine": 0.0,
+   "flag_rate_replica": 0.0,
+   "n_pairs": 18,
+   "note": "the advantage is the flag rate on replicas minus the flag rate on genuine prompts; where the twins are bit-identical it is zero by construction"
+  }
+ },
+ "no_data": [],
+ "status": {
+  "browser-l1": {
+   "dir": "results/E2/screener-on-e1-pairs/raw/browser-l1",
+   "exit": 0,
+   "timed_out": false
+  },
+  "browser-l2": {
+   "dir": "results/E2/screener-on-e1-pairs/raw/browser-l2",
+   "exit": 0,
+   "timed_out": false
+  },
+  "chat-l1-web": {
+   "dir": "results/E2/screener-on-e1-pairs/raw/chat-l1-web",
+   "exit": 0,
+   "timed_out": false
+  }
+ },
+ "wall_s": 420.4
+}

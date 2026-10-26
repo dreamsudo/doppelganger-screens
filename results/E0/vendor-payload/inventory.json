@@ -1,0 +1,62 @@
+{
+ "all_key_paths": [
+  "max_tokens",
+  "messages",
+  "messages[0].content",
+  "messages[0].content[0].text",
+  "messages[0].content[0].type",
+  "messages[0].content[1].source",
+  "messages[0].content[1].source.data",
+  "messages[0].content[1].source.media_type",
+  "messages[0].content[1].source.type",
+  "messages[0].content[1].type",
+  "messages[0].role",
+  "model",
+  "tools",
+  "tools[0].type"
+ ],
+ "error": null,
+ "message_blocks": [
+  {
+   "role": "user",
+   "types": [
+    "text",
+    "image"
+   ]
+  }
+ ],
+ "model_sent": "claude-opus-5-5",
+ "sdk_version": "1.15.0",
+ "structural_candidates": [],
+ "structural_hints_searched": [
+  "dom",
+  "a11y",
+  "accessibility",
+  "ax_tree",
+  "axtree",
+  "window",
+  "owner",
+  "pid",
+  "process",
+  "origin",
+  "frame",
+  "url",
+  "title",
+  "html",
+  "tree",
+  "selector",
+  "node"
+ ],
+ "tools": [
+  {
+   "type": "computer_toolset_20260801"
+  }
+ ],
+ "top_level_fields": [
+  "max_tokens",
+  "messages",
+  "model",
+  "tools"
+ ],
+ "verdict": "no structural channel in the request"
+}

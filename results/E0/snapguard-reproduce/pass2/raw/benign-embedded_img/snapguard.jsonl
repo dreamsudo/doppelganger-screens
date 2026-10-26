@@ -1,0 +1,1 @@
+{"data_name": "embedded_img", "label": "benign", "fpr": 0.0354, "detect_ids": [151, 159, 167, 182, 185, 187, 19, 72], "total_num": 226, "time_sec": 80.2242, "gpu_mem_mb": 0}

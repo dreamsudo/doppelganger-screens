@@ -1,0 +1,11 @@
+# File · configs/contexts.schema.yaml
+# Purpose · The schema for the frozen context set (METHOD.md §6 frozen contexts; §8 unit = context).
+# Description · Each context is a situation an agent is placed in: who wrote to it, about what, what it was asked to do, and where it starts. The act
+#   and the cell are not part of a context; a context crosses with an act and a cell to make a condition. Drawn and frozen before E1 by a recorded decision.
+# Inputs/Outputs · In: none. Out: read by the checks and by the E1 runner.
+# Depends on · nothing.
+# Invariant · A context is added, removed or edited only by a recorded decision, and never after the first frozen-context run.
+keys:
+  drawn:    {type: str,  nullable: false, source: "the date the set was drawn, and the recorded decisions that froze it"}
+  pilot:    {type: list, nullable: false, source: "contexts used for piloting; never mixed with the frozen set (the method)", item_keys: [id, sender, subject, body, task_suffix, start]}
+  frozen:   {type: list, nullable: false, source: "the frozen set; one unit of analysis each (METHOD.md §8)", item_keys: [id, sender, subject, body, task_suffix, start]}

@@ -1,0 +1,22 @@
+# File · configs/schema.yaml
+# Purpose · The one config schema; configs are strict.
+# Description · Every other file in configs/ must carry exactly these keys with these types; an unknown or missing key fails check strict_configs. Values the method leaves open are nullable until a recorded decision sets them.
+# Inputs/Outputs · In: none. Out: read by the checks.
+# Depends on · nothing.
+# Invariant · A key is added here only with a recorded reason.
+keys:
+  tost_margin:              {type: float, nullable: false, source: "METHOD.md §8, margin 0.10"}
+  h3_cr_upper_bound:        {type: float, nullable: false, source: "METHOD.md §5 H3"}
+  h3_delta_u_abs:           {type: float, nullable: false, source: "METHOD.md §5 H3"}
+  h0c_min_d:                {type: float, nullable: false, source: "METHOD.md §5 H0(c)"}
+  h2_structural_l2l3_min_d: {type: float, nullable: false, source: "METHOD.md §5 H2"}
+  utility_floor:            {type: float, nullable: true,  source: "METHOD.md §2 U0, value OPEN"}
+  k_runs:                   {type: int,   nullable: true,  source: "METHOD.md §6 and §8 fixed k, OPEN"}
+  n_contexts_frozen:        {type: int,   nullable: true,  source: "METHOD.md §6 frozen contexts, OPEN"}
+  epsilon_small:            {type: float, nullable: true,  source: "METHOD.md §5 H1 small epsilon, OPEN"}
+  k_runs_open:              {type: int,   nullable: true,  source: "k for the open agents (deviation from one fixed k, stated)"}
+  k_runs_frontier:          {type: int,   nullable: true,  source: "k for the frontier sample"}
+  n_contexts_frozen_open:   {type: int,   nullable: true,  source: "frozen contexts per act-cell, open agents"}
+  n_contexts_frozen_frontier: {type: int, nullable: true,  source: "frozen contexts per act-cell, frontier sample"}
+  epsilon_small_l2_max:     {type: float, nullable: true,  source: "normalised L2 bound on the prompt crop"}
+  epsilon_small_ssim_min:   {type: float, nullable: true,  source: "SSIM bound on the prompt crop"}

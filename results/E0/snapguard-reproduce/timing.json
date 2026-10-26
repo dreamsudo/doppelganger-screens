@@ -1,0 +1,110 @@
+{
+ "analyse_only": false,
+ "passes": {
+  "pass1": {
+   "status": {
+    "benign/embedded_img": {
+     "exit": 0,
+     "timed_out": false
+    },
+    "benign/screenshot": {
+     "exit": 0,
+     "timed_out": false
+    },
+    "malicious/EIA": {
+     "exit": 0,
+     "timed_out": false
+    },
+    "malicious/VPI": {
+     "exit": 0,
+     "timed_out": false
+    },
+    "malicious/VWA_adv_embedded_img": {
+     "exit": 0,
+     "timed_out": false
+    },
+    "malicious/VWA_adv_screenshot": {
+     "exit": 0,
+     "timed_out": false
+    },
+    "malicious/WebInject": {
+     "exit": 0,
+     "timed_out": false
+    },
+    "malicious/popup": {
+     "exit": 0,
+     "timed_out": false
+    },
+    "malicious/wasp": {
+     "exit": 0,
+     "timed_out": false
+    }
+   },
+   "time_sec": {
+    "benign/embedded_img": 42.5015,
+    "benign/screenshot": 2551.0958,
+    "malicious/EIA": 1886.5883,
+    "malicious/VPI": 89.0503,
+    "malicious/VWA_adv_embedded_img": 31.6252,
+    "malicious/VWA_adv_screenshot": 1274.7887,
+    "malicious/WebInject": 139.7252,
+    "malicious/popup": 909.6093,
+    "malicious/wasp": 151.1812
+   },
+   "wall_s": 2554.2
+  },
+  "pass2": {
+   "status": {
+    "benign/embedded_img": {
+     "exit": 0,
+     "timed_out": false
+    },
+    "benign/screenshot": {
+     "exit": 0,
+     "timed_out": false
+    },
+    "malicious/EIA": {
+     "exit": 0,
+     "timed_out": false
+    },
+    "malicious/VPI": {
+     "exit": 0,
+     "timed_out": false
+    },
+    "malicious/VWA_adv_embedded_img": {
+     "exit": 0,
+     "timed_out": false
+    },
+    "malicious/VWA_adv_screenshot": {
+     "exit": 0,
+     "timed_out": false
+    },
+    "malicious/WebInject": {
+     "exit": 0,
+     "timed_out": false
+    },
+    "malicious/popup": {
+     "exit": 0,
+     "timed_out": false
+    },
+    "malicious/wasp": {
+     "exit": 0,
+     "timed_out": false
+    }
+   },
+   "time_sec": {
+    "benign/embedded_img": 80.2242,
+    "benign/screenshot": 2285.4641,
+    "malicious/EIA": 1936.8656,
+    "malicious/VPI": 166.5331,
+    "malicious/VWA_adv_embedded_img": 57.2945,
+    "malicious/VWA_adv_screenshot": 1406.6813,
+    "malicious/WebInject": 240.7214,
+    "malicious/popup": 1107.0863,
+    "malicious/wasp": 277.3674
+   },
+   "wall_s": 2291.9
+  }
+ },
+ "wall_s_total": 4846.2
+}

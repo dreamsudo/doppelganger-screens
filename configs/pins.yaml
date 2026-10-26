@@ -1,0 +1,248 @@
+# Pinned sources, datasets, instruments, models and weights, with their hashes.
+raw:
+  wainjectbench:
+    manifest: data/raw/wainjectbench/MANIFEST.sha256
+    manifest_sha256: 1c9b1e930be6ecd4a4bb1d3a4de757d73df65f3f1affb472da1212039ffb9260
+    root: ../alpha-vendor/WAInjectBench
+    files: 2970
+    source: datasets.wainjectbench
+datasets:
+  wainjectbench:
+    paper: arXiv:2510.01354
+    repo: https://github.com/Norrrrrrr-lyn/WAInjectBench
+    commit: ee55236860820b3639c9039a2aa367b2cb86d114
+    commit_date: '2026-07-10'
+    fetched: '2026-10-18'
+    local: ../alpha-vendor/WAInjectBench
+    images:
+      benign: 948
+      malicious: 2022
+      total: 2970
+    note: image files copied into data/raw and pinned per file; the malicious count differs from the figure SnapGuard's paper
+      reports
+    counts_reported_by_snapguard:
+      benign: 948
+      malicious: 2185
+instruments:
+  guest:
+    virtualisation: apple
+    os: Kali GNU/Linux Rolling 2025.2
+    kernel: 7.1.5+kali-arm64
+    arch: aarch64
+    session: x11
+    measured: '2026-10-18'
+  python:
+    version: 3.14.7
+  git:
+    version: 2.47.2
+  pytest:
+    version: 9.1.1
+  llama_cpp_native:
+    role: serving realisation for the open agents
+    root: ../alpha-vendor/llama.cpp-src/build
+    sources: Kali llama.cpp 1:0.5.0+dfsg-2 source (orig sha256 4ae1927d...) with the Kali ggml 0.25.3 source (orig sha256
+      4631c977...) symlinked at src/ggml in place of the dfsg stub
+    configure: cmake -DCMAKE_BUILD_TYPE=Release -DGGML_NATIVE=ON -DLLAMA_CURL=OFF -DLLAMA_BUILD_TESTS=OFF -DGGML_BUILD_TESTS=OFF
+      -DLLAMA_BUILD_UI=OFF -DLLAMA_USE_PREBUILT_UI=OFF -DLLAMA_BUILD_APP=OFF -DLLAMA_BUILD_COMMIT=kali-src-0.5.0+dfsg-2
+    cpu_flags: -mcpu=generic-armv8-a+flagm+lse+dotprod+rdma+crc+aes+sha3+fp16fml+rcpc+sb+pauth (compiler-detected; no i8mm,
+      no sve)
+    toolchain:
+      cmake: 4.4.4 (pipx, PyPI)
+      gcc: 14.2.0
+    built: '2026-10-19'
+    binaries:
+      llama-server: 640fb02c96d309d53c3da665b76bd88b7fa58ffe803e0006faa417a33b45a0bf
+      libggml-cpu.so.0.25.3: c0bf02a72db4dbcec18293b2e66475592db54d1cd8b079aff673feb761492b4f
+      libllama.so.0: 3382758e0c2c24648b95c06cd63b6016c05dabe848d1711052f4b9ecfa8c271a
+installed:
+  ruff:
+    version: 0.17.1
+    via: pipx
+    source: PyPI
+    date: '2026-10-18'
+  black:
+    version: 26.10.1
+    via: pipx
+    source: PyPI
+    date: '2026-10-18'
+  mypy:
+    version: 2.4.0
+    via: pipx
+    source: PyPI
+    date: '2026-10-18'
+  apt-2026-10-18:
+    via: apt, run by the maintainer
+    date: '2026-10-18'
+    packages:
+      dovecot-imapd: 2.4.5+dfsg1-2
+      dovecot-lmtpd: 2.4.5+dfsg1-2
+      roundcube: 1.6.19+dfsg-1
+      roundcube-sqlite3: 1.6.19+dfsg-1
+      thunderbird: 153.4.0esr-1
+      postgresql: 18 (18.6-3)
+      python3-pyatspi: 2.58.2-1
+      wmctrl: 1.07+git20240228
+      scrot: 2.0.0-1
+      tesseract-ocr: 5.5.0-1.1
+      docker.io: 28.5.2+dfsg4-5
+      docker-compose: 2.40.3-3
+      apache2: 2.4.63-1 (pulled by roundcube)
+    debconf: 'roundcube database via dbconfig-common, sqlite3; docker.io data deleted on purge: yes'
+  python-xlib:
+    version: '0.33'
+    via: pip in .venv (ignored, rebuilt from this pin)
+    source: PyPI
+    date: '2026-10-18'
+    why: X-Resource QueryClientIds for the OS-prompt pilot
+  huggingface_hub:
+    via: pipx
+    source: PyPI
+    date: '2026-10-19'
+    note: installed, unused; downloads were made with curl and verified by sha256
+  llama_cpp:
+    package: llama.cpp
+    version: 1:0.5.0+dfsg-2
+    via: apt, run by the maintainer
+    source: Kali repositories
+    date: '2026-10-19'
+    packages: llama.cpp llama.cpp-tools llama.cpp-tools-extra llama.cpp-services python3-gguf libllama0 libggml0 0.25.3-1
+    server_service: disabled
+  llama_cpp_source:
+    package: llama.cpp 1:0.5.0+dfsg-2 source (apt-get source, deb-src enabled by the maintainer)
+    orig_tarball_sha256: 4ae1927dcf324ee53d94f5db713701560ac62cb8498e4a89f79665c572099875
+    root: ../alpha-vendor/llama.cpp-src
+    date: '2026-10-19'
+    use: convert_hf_to_gguf.py and gguf-py 0.19.0 for the UI-TARS conversion
+  ggml_source:
+    package: ggml 0.25.3-1 source (apt-get source)
+    orig_tarball_sha256: 4631c97772fc04a1dbecf213555747472162534068110bada04d92c086b81283
+    root: ../alpha-vendor/ggml-src
+    date: '2026-10-19'
+    use: in-tree ggml for the native llama.cpp build (the dfsg llama.cpp tarball carries none); Debian builds its libggml
+      with GGML_NATIVE=OFF and GGML_CPU_ALL_VARIANTS=ON, eight arm64 variants dispatched at run time
+  venv_gguf:
+    python: 3.14.7
+    torch: 2.11.0
+    transformers: 4.57.6
+    numpy: 2.2.6
+    sentencepiece: 0.2.2
+    safetensors: 0.8.0
+    gguf: 0.19.0 editable from the source package
+    via: pip in .venv-gguf (ignored, rebuilt from this pin)
+    source: PyPI
+    date: '2026-10-19'
+models:
+  anthropic_frontier:
+    pinned_id: claude-opus-5-5
+    vendor: Anthropic
+    role: frontier reference sample
+    price_usd_per_mtok:
+      input: 4.0
+      output: 20.0
+      cache_read_fraction_of_input: 0.05
+      source: vendor models and pricing pages read 2026-10-18
+    toolset: computer_toolset_20260801
+    superseded_pin: claude-opus-5 at 5 and 25 USD (from a reference table cached 2026-06-24)
+  open_1:
+    family: UI-TARS
+    hf_repo: ByteDance-Seed/UI-TARS-1.5-7B
+    revision: 683d002dd99d8f95104d31e70391a39348857f4e
+    pinned_id: ByteDance-Seed/UI-TARS-1.5-7B@683d002dd99d8f95104d31e70391a39348857f4e
+    params: 8.3B
+    arch: Qwen2.5-VL based
+    role: GUI-specialised open agent
+    looked_up: '2026-10-18'
+  open_2:
+    family: Qwen-VL
+    hf_repo: Qwen/Qwen3-VL-8B-Instruct
+    revision: 0c351dd01ed87e9c1b53cbc748cba10e6187ff3b
+    pinned_id: Qwen/Qwen3-VL-8B-Instruct@0c351dd01ed87e9c1b53cbc748cba10e6187ff3b
+    params: 8.8B
+    gguf_repo: Qwen/Qwen3-VL-8B-Instruct-GGUF
+    gguf_revision: f982a07559d4a2f6c8744d840bf6fccab30eea96
+    role: general vision-language open agent with grounding
+    looked_up: '2026-10-18'
+weights:
+  qwen3_vl_8b_gguf:
+    repo: Qwen/Qwen3-VL-8B-Instruct-GGUF
+    revision: f982a07559d4a2f6c8744d840bf6fccab30eea96
+    root: ../alpha-vendor/models/qwen3-vl-8b-instruct-gguf
+    files:
+      Qwen3VL-8B-Instruct-Q8_0.gguf: 0d264b3941185d00a74f75c4245521dae088ff1efc90ab8d1754e83f5844adb0
+      mmproj-Qwen3VL-8B-Instruct-F16.gguf: ca524100ebf825c9a870db1c580d03879e0da0ab2541697e2458e64891cf9d38
+      mmproj-Qwen3VL-8B-Instruct-Q8_0.gguf: c6ba85508d82f42590e6eb77d5340369ab6fecf107a7561d809523d8aa5f3bfd
+    fetched: '2026-10-19'
+    verified: sha256 against the Hugging Face LFS object ids; MANIFEST.json beside the files
+  qwen3_vl_32b_gguf:
+    repo: Qwen/Qwen3-VL-32B-Instruct-GGUF
+    revision: e3e1fe0c76de7ee58ea65db420c643adfe2e457c
+    root: ../alpha-vendor/models/qwen3-vl-32b-instruct-gguf
+    files:
+      Qwen3VL-32B-Instruct-Q8_0.gguf: 936dcdc564cf9f907af80cc581c53e01a275725b29d06ad753b923c1463f6751
+      mmproj-Qwen3VL-32B-Instruct-F16.gguf: 8617824839df91f84b4840ad5084dcf50a1403a435a1f4cfc4d8c84ce6cac2fc
+    fetched: '2026-10-19'
+    role: candidate measured by the CPU benchmark; not used
+  ui_tars_1_5_7b:
+    repo: ByteDance-Seed/UI-TARS-1.5-7B
+    revision: 683d002dd99d8f95104d31e70391a39348857f4e
+    root: ../alpha-vendor/models/ui-tars-1.5-7b
+    manifest: ../alpha-vendor/models/MANIFEST.json
+    fetched: 2026-10-19; all 15 files verified in the manifest (33.15 GB, 32-bit floats)
+    derived_gguf:
+      root: ../alpha-vendor/models/ui-tars-1.5-7b-gguf
+      converted: '2026-10-19: convert_hf_to_gguf.py --outtype f16 (Kali llama.cpp source package, .venv-gguf), then llama-quantize
+        Q8_0 from the native build; projector by convert_hf_to_gguf.py --mmproj --outtype f16'
+      files:
+        UI-TARS-1.5-7B-F16.gguf: 30d2cd1d0dd9de7dca61a558ff225a4c6ec5b0c4953fda83a48d90a49b1541ad
+        UI-TARS-1.5-7B-Q8_0.gguf: 4f472f69e4869177722aa7680300b6c97539a2a8f0b43ef8ed83f6e91022f3d6
+        mmproj-UI-TARS-1.5-7B-F16.gguf: e6dc9f4058e5aa7229709785f153b0332d1eceeb02ad79e371e1bdffcb504ece
+      note: the Q8_0 is llama-quantize (native build) from the F16 export; the converter's direct --outtype q8_0 export was
+        not used
+vendor:
+  mattermost_server:
+    version: 12.0.0
+    file: mattermost-team-12.0.0-linux-arm64.tar.gz
+    sha256: a7bdf574571213afc5d6455945f3c9d32d9caf145b321ce727a22e3258a7181e
+    source: Mattermost release hosting (releases.mattermost.com), tag v12.0.0 on GitHub
+    build_hash: 1f5e0e9ba40da7ba0741659346e0a385a623d6a4
+    fetched: '2026-10-18'
+    local: ../alpha-vendor/mattermost
+  mattermost_desktop:
+    version: 6.3.1
+    file: mattermost-desktop-6.3.1-linux-arm64.tar.gz
+    sha256: b761979cbaad272e0142ed378a9bdaaceeed399a8686ade7841ea35a4e6dd01f
+    source: GitHub releases mattermost/desktop v6.3.1
+    fetched: '2026-10-18'
+    local: ../alpha-vendor/mattermost
+  docker_images:
+    ubuntu_22_04:
+      digest: sha256:0a9887931b0e38af2e3487ed39e29436b0535c4f3f52e57745baaf79d1898956
+      arch: arm64
+      pulled: '2026-10-18'
+      for: UCM agent container base
+    openresty_alpine:
+      digest: sha256:d105c61207ac7568e3412aa1a0e5b4c8bb5bc818ffac21996068b282c25005b6
+      arch: arm64
+      pulled: '2026-10-18'
+      for: UCM proxy base
+    nginx_alpine:
+      digest: sha256:892bb2152464f0c5d8972593a5f5afaf8054552580b699d95f8ff4af08c2d33d
+      arch: arm64
+      pulled: '2026-10-18'
+      for: UCM ten custom websites (web.Dockerfile)
+defences:
+  ucm:
+    paper: arXiv:2607.05277
+    repo: https://github.com/ethz-spylab/untrusted-content-masking
+    commit: acff2e4ae6ab0038d56d38adea9bccdd0217af7c
+    commit_date: '2026-07-07'
+    fetched: '2026-10-18'
+    local: ../alpha-vendor/untrusted-content-masking
+  snapguard:
+    paper: arXiv:2604.25562
+    source: https://anonymous.4open.science/api/repo/SnapGuard-anoy-7094/zip
+    archive: SnapGuard-anoy-7094.zip
+    sha256: 4693dfbf93c1368267a3e064d20d787fae8d2374f4d5fbc69601789948b1400b
+    fetched: '2026-10-18'
+    local: ../alpha-vendor/snapguard
+    note: anonymized repository, no commit id; pinned by archive hash; contains detectors and results but no dataset directory

@@ -1,0 +1,38 @@
+{
+ "open_2/pixels/browser-l1": {
+  "defence_advantage": -0.0,
+  "defence_advantage_ci95": [
+   -0.0566,
+   0.0566
+  ],
+  "flag_rate_genuine": 0.0,
+  "flag_rate_replica": 0.0,
+  "n_pairs": 64,
+  "no_data": 0,
+  "note": "the advantage is the flag rate on replicas minus the flag rate on genuine prompts; zero by construction where the twins are bit-identical"
+ },
+ "open_2/pixels/browser-l2": {
+  "defence_advantage": -0.0,
+  "defence_advantage_ci95": [
+   -0.055,
+   0.055
+  ],
+  "flag_rate_genuine": 0.0,
+  "flag_rate_replica": 0.0,
+  "n_pairs": 66,
+  "no_data": 0,
+  "note": "the advantage is the flag rate on replicas minus the flag rate on genuine prompts; zero by construction where the twins are bit-identical"
+ },
+ "open_2/pixels/chat-l1-web": {
+  "defence_advantage": -0.0,
+  "defence_advantage_ci95": [
+   -0.1759,
+   0.1759
+  ],
+  "flag_rate_genuine": 0.0,
+  "flag_rate_replica": 0.0,
+  "n_pairs": 18,
+  "no_data": 0,
+  "note": "the advantage is the flag rate on replicas minus the flag rate on genuine prompts; zero by construction where the twins are bit-identical"
+ }
+}

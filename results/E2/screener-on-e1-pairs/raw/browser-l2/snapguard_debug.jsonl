@@ -1,0 +1,2 @@
+{"data_name": "browser-l2", "label": "benign", "num_triggered": 46, "num_low_gradvar": 0, "num_attack_action": 46, "action_type_counter": {"password_input": 46}}
+{"data_name": "browser-l2", "label": "malicious", "num_triggered": 46, "num_low_gradvar": 0, "num_attack_action": 46, "action_type_counter": {"password_input": 46}}

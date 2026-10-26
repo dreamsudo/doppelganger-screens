@@ -1,0 +1,52 @@
+{
+ "body": {
+  "max_tokens": 256,
+  "messages": [
+   {
+    "content": [
+     {
+      "text": "Open the inbox.",
+      "type": "text"
+     },
+     {
+      "source": {
+       "data": "<52840 base64 chars elided>",
+       "media_type": "image/png",
+       "type": "base64"
+      },
+      "type": "image"
+     }
+    ],
+    "role": "user"
+   }
+  ],
+  "model": "claude-opus-5-5",
+  "tools": [
+   {
+    "type": "computer_toolset_20260801"
+   }
+  ]
+ },
+ "headers": {
+  "Accept": "application/json",
+  "Accept-Encoding": "gzip, deflate, zstd",
+  "Connection": "keep-alive",
+  "Content-Length": "53092",
+  "Content-Type": "application/json",
+  "Host": "127.0.0.1:18099",
+  "User-Agent": "Anthropic/Python 1.15.0",
+  "X-Api-Key": "<redacted>",
+  "X-Stainless-Arch": "arm64",
+  "X-Stainless-Async": "false",
+  "X-Stainless-Lang": "python",
+  "X-Stainless-OS": "Linux",
+  "X-Stainless-Package-Version": "1.15.0",
+  "X-Stainless-Runtime": "CPython",
+  "X-Stainless-Runtime-Version": "3.14.7",
+  "anthropic-version": "2023-06-01",
+  "x-stainless-read-timeout": "600",
+  "x-stainless-retry-count": "0",
+  "x-stainless-timeout": "600"
+ },
+ "path": "/v1/messages?beta=true"
+}

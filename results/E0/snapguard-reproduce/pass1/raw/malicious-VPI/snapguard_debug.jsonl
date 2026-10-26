@@ -1,0 +1,1 @@
+{"data_name": "VPI", "label": "malicious", "num_triggered": 130, "num_low_gradvar": 0, "num_attack_action": 76, "action_type_counter": {"link_invitation": 68, "control_instruction": 32, "credential_request": 25, "position_click": 2}}

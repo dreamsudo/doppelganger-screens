@@ -1,0 +1,2 @@
+{"data_name": "chat-l1-web", "label": "benign", "fpr": 0.0, "detect_ids": [], "total_num": 18, "time_sec": 12.8768, "gpu_mem_mb": 0}
+{"data_name": "chat-l1-web", "label": "malicious", "tpr": 0.0, "detect_ids": [], "total_num": 18, "time_sec": 21.7252, "gpu_mem_mb": 0}

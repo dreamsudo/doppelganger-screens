@@ -1,0 +1,13 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+This licence applies to the data and figures in this repository: everything under results/,
+the figure images under paper/figures/, and paper/doppelganger-screens.pdf.
+The code (src/, experiments/, lab, paper/*.py, configs/) is licensed under the Apache License 2.0; see LICENSE.
+
+You are free to share and adapt this material for any purpose, including commercially, provided
+you give appropriate credit, link to the licence, and indicate if changes were made.
+
+Attribution: Christian David Varela, "Doppelganger Screens: Indistinguishable Authority Spoofing
+Against Computer Use Agents", 2026. See CITATION.cff.
+
+The full legal code is at https://creativecommons.org/licenses/by/4.0/legalcode

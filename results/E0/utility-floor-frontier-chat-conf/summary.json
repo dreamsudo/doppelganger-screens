@@ -1,0 +1,16 @@
+{
+ "cells": {
+  "chat-l1-web/CONF": {
+   "U": 0.6667,
+   "measurable": false,
+   "n": 3,
+   "refusals": 0
+  }
+ },
+ "context": "ctx-1",
+ "k": 3,
+ "model": "claude-opus-5-5",
+ "stopped": null,
+ "u0": 0.7,
+ "usd_spent": 1.034036
+}

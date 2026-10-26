@@ -1,0 +1,14 @@
+{
+ "cache_read_input_tokens": 0,
+ "input_tokens": 191873,
+ "note": "cap: 0.8124 USD spent, next episode could pass 1.0 USD",
+ "output_tokens": 2243,
+ "price_usd_per_mtok": {
+  "cache_read_fraction_of_input": 0.05,
+  "input": 4.0,
+  "output": 20.0
+ },
+ "refusals": 0,
+ "requests": 16,
+ "usd_spent": 0.812352
+}

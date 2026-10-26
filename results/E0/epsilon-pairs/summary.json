@@ -1,0 +1,56 @@
+{
+ "browser-l1": {
+  "l2": {
+   "max": 0.0,
+   "median": 0.0,
+   "p90": 0.0
+  },
+  "matched": 24,
+  "n": 24,
+  "no_data": 0,
+  "outside_changed_max": 0.0,
+  "region": "prompt crop",
+  "ssim": {
+   "median": 1.0,
+   "min": 1.0,
+   "p10": 1.0
+  },
+  "unmatched": 0
+ },
+ "browser-l2": {
+  "l2": {
+   "max": 0.03319,
+   "median": 0.02694,
+   "p90": 0.03319
+  },
+  "matched": 24,
+  "n": 24,
+  "no_data": 0,
+  "outside_changed_max": 0.0,
+  "region": "prompt crop",
+  "ssim": {
+   "median": 0.99256,
+   "min": 0.98865,
+   "p10": 0.98865
+  },
+  "unmatched": 0
+ },
+ "chat-l1-web": {
+  "l2": {
+   "max": 1.21495,
+   "median": 0.42876,
+   "p90": 1.21484
+  },
+  "matched": 0,
+  "n": 18,
+  "no_data": 0,
+  "outside_changed_max": null,
+  "region": "whole screen",
+  "ssim": {
+   "median": 0.65589,
+   "min": 0.54178,
+   "p10": 0.54237
+  },
+  "unmatched": 18
+ }
+}

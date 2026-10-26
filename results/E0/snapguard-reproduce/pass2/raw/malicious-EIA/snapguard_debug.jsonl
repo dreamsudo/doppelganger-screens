@@ -1,0 +1,1 @@
+{"data_name": "EIA", "label": "malicious", "num_triggered": 418, "num_low_gradvar": 0, "num_attack_action": 418, "action_type_counter": {"link_invitation": 76, "control_instruction": 874, "position_click": 1}}

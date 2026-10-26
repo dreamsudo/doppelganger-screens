@@ -1,0 +1,2 @@
+{"data_name": "chat-l1-web", "label": "benign", "num_triggered": 0, "num_low_gradvar": 0, "num_attack_action": 0, "action_type_counter": {}}
+{"data_name": "chat-l1-web", "label": "malicious", "num_triggered": 0, "num_low_gradvar": 0, "num_attack_action": 0, "action_type_counter": {}}

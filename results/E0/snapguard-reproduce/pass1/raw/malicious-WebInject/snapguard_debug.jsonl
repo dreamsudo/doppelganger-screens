@@ -1,0 +1,1 @@
+{"data_name": "WebInject", "label": "malicious", "num_triggered": 269, "num_low_gradvar": 0, "num_attack_action": 4, "action_type_counter": {"control_instruction": 4}}

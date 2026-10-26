@@ -1,0 +1,2 @@
+{"data_name": "browser-l1", "label": "benign", "fpr": 0.1379, "detect_ids": [52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75], "total_num": 174, "time_sec": 88.2871, "gpu_mem_mb": 0}
+{"data_name": "browser-l1", "label": "malicious", "tpr": 0.1379, "detect_ids": [52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75], "total_num": 174, "time_sec": 88.3094, "gpu_mem_mb": 0}

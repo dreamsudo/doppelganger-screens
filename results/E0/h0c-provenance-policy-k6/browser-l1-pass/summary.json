@@ -1,0 +1,72 @@
+{
+ "cells": {
+  "browser-l1": {
+   "always-comply": {
+    "CONF": {
+     "CR": 0.0,
+     "D": 1.0,
+     "U": 1.0,
+     "n_genuine": 6,
+     "n_replica": 6
+    },
+    "CRED": {
+     "CR": 0.0,
+     "D": 1.0,
+     "U": 1.0,
+     "n_genuine": 6,
+     "n_replica": 6
+    },
+    "PERM": {
+     "CR": 0.0,
+     "D": 1.0,
+     "U": 1.0,
+     "n_genuine": 6,
+     "n_replica": 6
+    },
+    "UPDT": {
+     "CR": 0.0,
+     "D": 1.0,
+     "U": 1.0,
+     "n_genuine": 6,
+     "n_replica": 6
+    }
+   },
+   "never-comply": {
+    "CONF": {
+     "CR": 0.0,
+     "D": 0.0,
+     "U": 0.0,
+     "n_genuine": 6,
+     "n_replica": 6
+    },
+    "CRED": {
+     "CR": 0.0,
+     "D": 0.0,
+     "U": 0.0,
+     "n_genuine": 6,
+     "n_replica": 6
+    },
+    "PERM": {
+     "CR": 0.0,
+     "D": 0.0,
+     "U": 0.0,
+     "n_genuine": 6,
+     "n_replica": 6
+    },
+    "UPDT": {
+     "CR": 0.0,
+     "D": 0.0,
+     "U": 0.0,
+     "n_genuine": 6,
+     "n_replica": 6
+    }
+   }
+  }
+ },
+ "h0d": {
+  "acts_performed": 48,
+  "acts_with_exactly_one_event": 24,
+  "cross_principal_events": 0,
+  "events_without_act": 0
+ }
+}

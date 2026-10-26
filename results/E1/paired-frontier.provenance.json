@@ -1,0 +1,85 @@
+{
+  "command": [
+    "python3",
+    "experiments/E1/paired_runs.py"
+  ],
+  "commit": "e80a660c67b20f78eac7991d2037d472a465c2e5",
+  "config_sha256": "a61219973507c34ed9529ae957c5a7ab2bdf343c4ee7d9804685cb02feaf6e87",
+  "data_sha256": "acc4e67c6fe1d317fac461f4503b203749124941e349be9a167e5c6c8c1800c4",
+  "date": "2026-10-19",
+  "depends_on": [
+    "experiments/E1/paired_runs.py",
+    "src/awp/harness.py",
+    "src/awp/agents.py",
+    "src/awp/frontier.py",
+    "src/awp/labapp.py",
+    "src/awp/chat.py",
+    "src/awp/browser.py",
+    "src/awp/mm.py",
+    "src/awp/cdp.py",
+    "src/awp/proc.py",
+    "configs/prereg.yaml",
+    "configs/contexts.yaml"
+  ],
+  "dirty_at_end": [],
+  "exit": 0,
+  "instrument": {
+    "git": {
+      "version": "2.47.2"
+    },
+    "guest": {
+      "arch": "aarch64",
+      "kernel": "7.1.5+kali-arm64",
+      "measured": "2026-10-18",
+      "os": "Kali GNU/Linux Rolling 2025.2",
+      "session": "x11",
+      "virtualisation": "apple"
+    },
+    "llama_cpp_native": {
+      "binaries": {
+        "libggml-cpu.so.0.25.3": "c0bf02a72db4dbcec18293b2e66475592db54d1cd8b079aff673feb761492b4f",
+        "libllama.so.0": "3382758e0c2c24648b95c06cd63b6016c05dabe848d1711052f4b9ecfa8c271a",
+        "llama-server": "640fb02c96d309d53c3da665b76bd88b7fa58ffe803e0006faa417a33b45a0bf"
+      },
+      "built": "2026-10-19",
+      "configure": "cmake -DCMAKE_BUILD_TYPE=Release -DGGML_NATIVE=ON -DLLAMA_CURL=OFF -DLLAMA_BUILD_TESTS=OFF -DGGML_BUILD_TESTS=OFF -DLLAMA_BUILD_UI=OFF -DLLAMA_USE_PREBUILT_UI=OFF -DLLAMA_BUILD_APP=OFF -DLLAMA_BUILD_COMMIT=kali-src-0.5.0+dfsg-2",
+      "cpu_flags": "-mcpu=generic-armv8-a+flagm+lse+dotprod+rdma+crc+aes+sha3+fp16fml+rcpc+sb+pauth (compiler-detected; no i8mm, no sve)",
+      "role": "serving realisation for the open agents",
+      "root": "../alpha-vendor/llama.cpp-src/build",
+      "sources": "Kali llama.cpp 1:0.5.0+dfsg-2 source (orig sha256 4ae1927d...) with the Kali ggml 0.25.3 source (orig sha256 4631c977...) symlinked at src/ggml in place of the dfsg stub",
+      "toolchain": {
+        "cmake": "4.4.4 (pipx, PyPI)",
+        "gcc": "14.2.0"
+      }
+    },
+    "pytest": {
+      "version": "9.1.1"
+    },
+    "python": {
+      "version": "3.14.7"
+    }
+  },
+  "max_usd_declared": 10.0,
+  "null_declared": false,
+  "run_class": "model",
+  "sealed_at_commit": "e80a660c67b20f78eac7991d2037d472a465c2e5",
+  "sealed_on": "2026-10-20",
+  "sealed_why": "a file in depends_on changed after the run ended; no episode of this run is affected and the run is cited at its commit",
+  "seeds": "",
+  "tree_clean": true,
+  "usage": {
+    "cache_read_input_tokens": 0,
+    "input_tokens": 233133,
+    "output_tokens": 8085,
+    "price_usd_per_mtok": {
+      "cache_read_fraction_of_input": 0.05,
+      "input": 4.0,
+      "output": 20.0
+    },
+    "refusals": 0,
+    "requests": 38,
+    "usd_spent": 1.094232
+  },
+  "usd_spent": 1.094232,
+  "wall_time_s": 263.533
+}

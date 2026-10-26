@@ -1,0 +1,1 @@
+{"data_name": "screenshot", "label": "benign", "num_triggered": 163, "num_low_gradvar": 0, "num_attack_action": 142, "action_type_counter": {"link_invitation": 129, "control_instruction": 68, "position_click": 11, "credential_request": 3}}

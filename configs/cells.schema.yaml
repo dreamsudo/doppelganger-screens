@@ -1,0 +1,9 @@
+# File · configs/cells.schema.yaml
+# Purpose · Schema for configs/cells.yaml (the method configs are strict; per-file schema X.schema.yaml wins over schema.yaml).
+# Description · agents is the pinned agent list (filled by the design decision); cells is the list of cell rows fixed by each with exactly the keys named here.
+# Inputs/Outputs · In: none. Out: read by the checks (strict_configs).
+# Depends on · nothing.
+# Invariant · A key is added here only with a recorded reason.
+keys:
+  agents: {type: list}
+  cells: {type: list, item_keys: [id, surface, level, application, measured, acts, trigger_source, sink, role_passthrough]}

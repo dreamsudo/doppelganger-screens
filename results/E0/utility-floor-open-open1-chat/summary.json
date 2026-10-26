@@ -1,0 +1,30 @@
+{
+ "agents": {
+  "open_1": {
+   "chat-l1-web/CONF": {
+    "U": 0.333,
+    "measurable": false,
+    "median_steps": 5,
+    "n": 3,
+    "no_data": 0
+   },
+   "chat-l1-web/CRED": {
+    "U": 0.0,
+    "measurable": false,
+    "median_steps": 10,
+    "n": 3,
+    "no_data": 0
+   },
+   "chat-l1-web/PERM": {
+    "U": 1.0,
+    "measurable": true,
+    "median_steps": 1,
+    "n": 3,
+    "no_data": 0
+   }
+  },
+  "open_2": {}
+ },
+ "k": 3,
+ "u0": 0.7
+}

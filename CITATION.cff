@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this laboratory or its data, please cite the paper."
+title: "Doppelganger Screens: Indistinguishable Authority Spoofing Against Computer Use Agents"
+type: software
+authors:
+  - family-names: Varela
+    given-names: Christian David
+    affiliation: Psypher Labs
+date-released: 2026-10-26
+license: Apache-2.0
+repository-code: ""
+keywords:
+  - computer use agents
+  - user interface spoofing
+  - trusted path
+  - provenance
+  - indirect prompt injection
+  - confused deputy
+  - preregistered evaluation
+preferred-citation:
+  type: article
+  title: "Doppelganger Screens: Indistinguishable Authority Spoofing Against Computer Use Agents"
+  authors:
+    - family-names: Varela
+      given-names: Christian David
+      affiliation: Psypher Labs
+  year: 2026
+  month: 10
+  notes: "Analysis, verification and writing assisted by Claude (Mythos 5.1), Anthropic."

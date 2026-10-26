@@ -1,0 +1,1 @@
+{"data_name": "popup", "label": "malicious", "num_triggered": 164, "num_low_gradvar": 0, "num_attack_action": 164, "action_type_counter": {"position_click": 149, "link_invitation": 20, "control_instruction": 18, "credential_request": 4}}

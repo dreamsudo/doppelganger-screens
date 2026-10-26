@@ -1,0 +1,9 @@
+# The harness (src/awp), the experiments and the paper build run on the system Python 3.14 with these packages.
+# pyatspi and gi come from the python3-pyatspi apt package (configs/pins.yaml, installed.apt-2026-10-18);
+# python-xlib is needed only by experiments/E0/pilot/osprompt_owner.py.
+numpy==2.4.6
+pillow==12.3.0
+PyYAML==6.0.3
+matplotlib==3.10.9
+pypdf==6.19.0
+python-xlib==0.33

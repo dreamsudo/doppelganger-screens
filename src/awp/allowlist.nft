@@ -1,0 +1,27 @@
+#!/usr/sbin/nft -f
+# File · src/awp/allowlist.nft
+# Purpose · The guest-side network allow-list of (amending ): outbound traffic from this guest is dropped except the loopback, the guest's resolver, the Anthropic API on port 443, and a download window the maintainer opens for a bounded time.
+# Description · Applied by the maintainer with `sudo nft -f src/awp/allowlist.nft` (the bare `table` line creates the table on a first apply so the flush that follows cannot fail, measured 2026-10-19; re-apply after editing). Inbound traffic is untouched (the maintainer's desktop session needs nothing here). The API addresses were resolved on 2026-10-19 (A 160.79.104.10, AAAA 2607:6bc0::10); if the vendor's addresses change, the maintainer updates this file and the maintainer re-applies it, and the probe (src/awp/netprobe.py) tells. A window opens every host on ports 80 and 443 for the stated time: `sudo nft add element inet awp window '{ 443 timeout 60m, 80 timeout 60m }'`; it closes by itself; `sudo nft flush set inet awp window` closes it early. Every window is recorded in the run record with what was fetched. Dropped packets are counted (`sudo nft list chain inet awp output`).
+# Inputs/Outputs · In: nothing. Out: the kernel rule set; counters.
+# Depends on · nftables (Kali).
+# Invariant · Policy drop on the output hook; nothing outbound except what is listed; no rule here opens anything inbound.
+table inet awp
+flush table inet awp
+table inet awp {
+    set api_v4 { type ipv4_addr; elements = { 160.79.104.10 } }
+    set api_v6 { type ipv6_addr; elements = { 2607:6bc0::10 } }
+    set window { type inet_service; flags timeout; }
+    chain output {
+        type filter hook output priority 0; policy drop;
+        oif "lo" accept
+        ct state established,related accept
+        ip daddr 192.168.64.1 udp dport 53 accept
+        ip daddr 192.168.64.1 tcp dport 53 accept
+        ip6 daddr fe80::/10 udp dport 53 accept
+        ip6 daddr fe80::/10 tcp dport 53 accept
+        ip daddr @api_v4 tcp dport 443 accept
+        ip6 daddr @api_v6 tcp dport 443 accept
+        tcp dport @window accept
+        counter drop
+    }
+}
